@@ -1,0 +1,13 @@
+<html t:type="layout" title="View Post"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <body>
+        <ul>
+            <li> ${post.id} </li>
+            <li> ${post.postDate} </li>
+            <li> ${post.content} </li>
+        </ul>
+    </body>
+
+</html>

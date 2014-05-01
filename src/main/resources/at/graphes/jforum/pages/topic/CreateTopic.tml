@@ -1,0 +1,7 @@
+<html t:type="layout" title="Create a new Topic in ${board?.name}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <t:beaneditform object="newTopic" include="title, content" />
+
+</html>

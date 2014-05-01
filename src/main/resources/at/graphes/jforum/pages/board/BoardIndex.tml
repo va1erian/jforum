@@ -1,0 +1,8 @@
+<html t:type="layout" title="${b?.name}"
+      t:sidebarTitle="Framework Version"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+     <t:grid source="b?.topics" reorder="title,"/>
+     <t:pagelink page="topic/create" parameters="{'board': b.id }"> Create Topic </t:pagelink>
+</html>

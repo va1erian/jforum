@@ -1,0 +1,12 @@
+<html t:type="layout" title="Welcome"
+      t:sidebarTitle="Framework Version"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+        <!-- Most of the page content, including <head>, <body>, etc. tags, comes from Layout.tml -->
+
+    <table t:type="grid" t:source="boards" t:row="board">
+        <p:nameCell>
+            <a t:type="pagelink" t:page="board" t:parameters="{'b': board.id }" href="#">${board.name}</a>
+        </p:nameCell>
+    </table>
+</html>
