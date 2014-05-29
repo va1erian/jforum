@@ -39,11 +39,11 @@ public class AuthenticationService {
         if(u == null)
             throw new AuthenticationException("Unknown user");
       
-        if(!u.getPassHash().equals(computeHash(pass)))
+        if(!u.getPassHash().equals(new String(computeHash(pass))))
             throw new AuthenticationException("Incorrect password.");
     }
     
-    public byte[] computeHash(String pass) throws AuthenticationException {
+    static public byte[] computeHash(String pass) throws AuthenticationException {
         char[] chars = pass.toCharArray();
         byte[] secret = null;
         PBEKeySpec keyspec = new PBEKeySpec(chars, null, 500);
