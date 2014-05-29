@@ -2,6 +2,17 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
-    <t:beaneditform object="newBoard" include="name,description" />
+    <form t:type="form" t:id="login">
+ <t:errors/>
+ 
+            <t:label for="nickname"/>:
+            <input t:type="TextField" t:id="nickname" t:validate="required,minlength=3" size="30"/>
+            <br/>
+            <t:label for="password"/>:
+            <input t:type="PasswordField" t:id="password" t:validate="required,minlength=3" size="30"/>
+            <br/>
+            <input type="submit" value="Login"/>
+    </form>
+
 
 </html>

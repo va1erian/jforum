@@ -15,9 +15,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package at.graphes.jforum.dao;
+package at.graphes.jforum.services.domain;
 
-import at.graphes.jforum.entities.Board;
+import at.graphes.jforum.entities.Post;
 import at.graphes.jforum.entities.Topic;
 import at.graphes.jforum.entities.User;
 import java.util.List;
@@ -28,37 +28,42 @@ import org.hibernate.Session;
  *
  * @author valerian
  */
-public class TopicDAOHibernateImpl implements TopicDAO {
+public class PostDAOHibernateImpl implements PostDAO {
 
+    
+    static String BY_TOPIC_QUERY = "SELECT p FROM Post p WHERE p.parent = :t ORDER BY p.postDate";
+    static String BY_USER_QUERY  = "SELECT p FROM Post p WHERE p.author = :u ORDER BY p.postDate";
+    
     @Inject
-    Session s;    
+    private Session s;
+    
     
     @Override
-    public List<Topic> findByBoard(Board b) {
-        throw new UnsupportedOperationException("Not supported yet.");  
+    public Post find(long id) {
+        return (Post) s.get(Post.class, id);
     }
 
     @Override
-    public List<Topic> findByBoard(Board b, Integer page) {
-        throw new UnsupportedOperationException("Not supported yet.");  
+    public List<Post> findByTopic(Topic t) {
+        return s.createQuery(BY_TOPIC_QUERY).setParameter("t", t).list();
     }
 
     @Override
-    public List<Topic> findByUser(User u) {
-        throw new UnsupportedOperationException("Not supported yet.");  
+    public List<Post> findByUser(User u) {
+        return s.createQuery(BY_USER_QUERY).setParameter("u", u).list();
     }
 
     @Override
-    public Integer getPageCount() {
-        throw new UnsupportedOperationException("Not supported yet.");  
-    }
-
-    @Override
-    public Topic save(Topic t) {
-        s.persist(t);
+    public Post save(Post p) {
+        s.persist(p);
         s.flush();
-        s.refresh(t);
-        return t;
+        s.refresh(p);
+        return p;
+    }
+
+    @Override
+    public void delete(Post p) {
+        s.delete(p);
     }
     
 }

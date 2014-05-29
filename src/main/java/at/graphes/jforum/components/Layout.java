@@ -1,10 +1,11 @@
 package at.graphes.jforum.components;
 
+import at.graphes.jforum.services.auth.AuthenticationService;
 import org.apache.tapestry5.*;
-import org.apache.tapestry5.annotations.*;
-import org.apache.tapestry5.ioc.annotations.*;
 import org.apache.tapestry5.BindingConstants;
 import org.apache.tapestry5.SymbolConstants;
+import org.apache.tapestry5.annotations.*;
+import org.apache.tapestry5.ioc.annotations.*;
 
 /**
  * Layout component for pages of application JForum.
@@ -12,6 +13,10 @@ import org.apache.tapestry5.SymbolConstants;
 @Import(stylesheet = "context:layout/layout.css")
 public class Layout {
 
+    @Inject
+    @Property
+    AuthenticationService auth;
+    
     /**
      * The page title, for the <title> element and the <h1> element.
      */
@@ -30,13 +35,4 @@ public class Layout {
     @Symbol(SymbolConstants.APPLICATION_VERSION)
     private String appVersion;
 
-//    public String getClassForPageName() {
-//        return resources.getPageName().equalsIgnoreCase(pageName)
-//                ? "current_page_item"
-//                : null;
-//    }
-//
-//    public String[] getPageNames() {
-//        return new String[]{"Index", "About", "Contact"};
-//    }
 }

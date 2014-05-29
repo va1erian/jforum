@@ -17,13 +17,14 @@
 
 package at.graphes.jforum.services.auth;
 
-import at.graphes.jforum.dao.UserDAO;
+import at.graphes.jforum.services.domain.UserDAO;
 import at.graphes.jforum.entities.User;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import org.apache.tapestry5.ioc.annotations.Inject;
+import org.apache.tapestry5.services.ApplicationStateManager;
 
 /**
  *
@@ -31,34 +32,51 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  */
 public class AuthenticationService {
     
+    static final byte[] salt = new byte[] { 11, 22, 33};
+    
+    @Inject
+    ApplicationStateManager sessionManager;
+    
     @Inject
     UserDAO userDAO;
         
     public void tryLogin(String nick, String pass) throws AuthenticationException {
         User u = userDAO.findByNickname(nick);
-        if(u == null)
+        if(u == null) {
             throw new AuthenticationException("Unknown user");
-      
-        if(!u.getPassHash().equals(new String(computeHash(pass))))
+        }
+        
+        if(!u.getPassHash().equals(new String(computeHash(pass)))) {
             throw new AuthenticationException("Incorrect password.");
+        }
+        
+        sessionManager.set(User.class, u);
     }
     
-    static public byte[] computeHash(String pass) throws AuthenticationException {
+    public byte[] computeHash(String pass) throws AuthenticationException {
         char[] chars = pass.toCharArray();
         byte[] secret = null;
-        PBEKeySpec keyspec = new PBEKeySpec(chars, null, 500);
+        PBEKeySpec keyspec = new PBEKeySpec(chars, salt, 500, 256);
         SecretKeyFactory factory;
         try {
             factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
             secret = factory.generateSecret(keyspec).getEncoded();
         } catch (NoSuchAlgorithmException | InvalidKeySpecException ex) {
-            throw new AuthenticationException("An error occured during the authentication process");
+            throw new AuthenticationException("An error occured during the authentication process " + ex.getMessage());
         }
         
          return secret;
     }
     
+    public User getLoggedUser() {
+        return (User) sessionManager.get(User.class);
+    }
+    
     public boolean isLoggedIn() {
-        return true;
+        return sessionManager.exists(User.class);
+    }
+    
+    public void logOut() {
+        sessionManager.set(User.class, null);
     }
 }

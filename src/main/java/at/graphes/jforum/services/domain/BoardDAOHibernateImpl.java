@@ -15,10 +15,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package at.graphes.jforum.dao;
+package at.graphes.jforum.services.domain;
 
-import at.graphes.jforum.entities.Message;
-import at.graphes.jforum.entities.User;
+import at.graphes.jforum.entities.Board;
+import java.util.List;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.hibernate.Session;
 
@@ -26,29 +26,36 @@ import org.hibernate.Session;
  *
  * @author valerian
  */
-public class UserDAOHibernateImpl implements UserDAO{
+public class BoardDAOHibernateImpl implements BoardDAO {
 
-    static String BY_MESSAGE_QUERY = "SELECT u FROM User u WHERE :p.author = u";
-    
+    static String FIND_ALL_QUERY = "SELECT b FROM Board b ORDER BY b.name";
+    static String BY_NAME_QUERY  = "SELECT b FROM Board b WHERE b.name = :n";
     @Inject
-    private Session s;
+    Session s;
+    
+
+    @Override
+    public List<Board> findAll() {
+        return s.createQuery(FIND_ALL_QUERY).list();
+    }
+
+    @Override
+    public Board findByName(String name) {
+        return (Board) s.createQuery(BY_NAME_QUERY).setParameter("n", name).uniqueResult();
+    }
+
+    @Override
+    public Board findById(Integer id){
+        return (Board) s.get(Board.class, id );
+    }
+    
     
     @Override
-    public User findByNickname(String nick) {
-        return (User) s.get(User.class, nick);
-    }
-
-    @Override
-    public User findByMessage(Message m) {
-        return (User) s.createQuery(BY_MESSAGE_QUERY).setParameter("p", m).uniqueResult();
-    }
-
-    @Override
-    public User save(User u) {
-        s.persist(u);
-        s.flush();
-        s.refresh(u);
-        return u;
+    public Board save(Board b) {
+       s.persist(b);
+       s.flush();
+       s.refresh(b);
+       return b;
     }
     
 }

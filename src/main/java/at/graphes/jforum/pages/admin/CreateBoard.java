@@ -17,9 +17,10 @@
 
 package at.graphes.jforum.pages.admin;
 
-import at.graphes.jforum.dao.BoardDAO;
+import at.graphes.jforum.services.domain.BoardDAO;
 import at.graphes.jforum.entities.Board;
 import at.graphes.jforum.pages.Index;
+import at.graphes.jforum.services.auth.RequiresAuthentication;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
@@ -27,6 +28,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author valerian
  */
+@RequiresAuthentication
 public class CreateBoard {
     
     @Property private Board newBoard;

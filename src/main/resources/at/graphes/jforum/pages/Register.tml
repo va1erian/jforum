@@ -1,0 +1,26 @@
+<html t:type="layout" title="Register"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+        <form t:type="form" t:id="registerForm">
+            <t:errors/>
+ 
+            <p>
+                <t:label for="nickname"/>:
+                <input t:type="TextField" t:id="nickname" t:validate="required,minlength=3" size="30"/>
+            </p>
+            <p>
+                <t:label for="email"/>:
+                <input t:type="TextField" t:id="email" t:validate="required,email" size="30"/>
+            </p>
+            <p>
+                <t:label for="password"/>:
+                <input t:type="PasswordField" t:id="password" t:validate="required,minlength=3" size="30"/>
+            </p>
+            <p>
+                <t:label for="passwordConfirmation"> Confirmation </t:label>:
+                <input t:type="PasswordField" t:id="passwordConfirmation" t:validate="required,minlength=3" size="30"/>
+            </p>
+            <input type="submit" value="Create account"/>
+        </form>
+</html>

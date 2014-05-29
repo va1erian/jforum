@@ -1,6 +1,6 @@
 package at.graphes.jforum.pages;
 
-import at.graphes.jforum.dao.BoardDAO;
+import at.graphes.jforum.services.domain.BoardDAO;
 import at.graphes.jforum.entities.Board;
 import java.util.List;
 import org.apache.tapestry5.annotations.Property;

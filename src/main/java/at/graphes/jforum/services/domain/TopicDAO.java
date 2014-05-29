@@ -15,9 +15,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package at.graphes.jforum.dao;
+package at.graphes.jforum.services.domain;
 
-import at.graphes.jforum.entities.*;
+import at.graphes.jforum.entities.Board;
+import at.graphes.jforum.entities.Topic;
+import at.graphes.jforum.entities.User;
 import java.util.List;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 
@@ -25,11 +27,15 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
  *
  * @author valerian
  */
-public interface BoardDAO {
-    List<Board> findAll();
-    Board findById(Integer id);
-    Board findByName(String name);
+public interface TopicDAO {
     
+    List<Topic> findByBoard(Board b);
+    List<Topic> findByBoard(Board b, Integer page);
+    List<Topic> findByUser(User u);
+    
+    Integer getPageCount();
     @CommitAfter
-    Board save(Board b);
+    Topic save(Topic t);
+    
+    
 }

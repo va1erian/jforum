@@ -15,21 +15,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package at.graphes.jforum.dao;
+package at.graphes.jforum.services.domain;
 
-import at.graphes.jforum.entities.Message;
-import at.graphes.jforum.entities.User;
+import at.graphes.jforum.entities.*;
+import java.util.List;
 import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 
 /**
  *
  * @author valerian
  */
-public interface UserDAO {
-
-    User findByNickname(String nick);
-    User findByMessage(Message m);
+public interface BoardDAO {
+    List<Board> findAll();
+    Board findById(Integer id);
+    Board findByName(String name);
     
     @CommitAfter
-    User save(User u);
+    Board save(Board b);
 }

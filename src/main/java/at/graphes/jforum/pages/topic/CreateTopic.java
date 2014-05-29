@@ -1,8 +1,9 @@
 package at.graphes.jforum.pages.topic;
 
-import at.graphes.jforum.dao.TopicDAO;
+import at.graphes.jforum.services.domain.TopicDAO;
 import at.graphes.jforum.entities.Board;
 import at.graphes.jforum.entities.Topic;
+import at.graphes.jforum.services.auth.RequiresAuthentication;
 import java.util.Date;
 import org.apache.tapestry5.annotations.ActivationRequestParameter;
 import org.apache.tapestry5.annotations.Log;
@@ -30,6 +31,7 @@ import org.apache.tapestry5.ioc.annotations.Inject;
  *
  * @author valerian
  */
+@RequiresAuthentication
 public class CreateTopic {
     
     @Property

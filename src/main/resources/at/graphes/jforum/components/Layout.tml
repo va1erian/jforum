@@ -14,7 +14,13 @@
                  <a t:type="pageLink" t:page="index">  JForum </a>
                 </h1>
             </div>
-            <div class="menu">
+            <div class="header-member-panel">
+                <t:if test="auth.loggedIn">
+                Hello ${auth.loggedUser.nickname }
+                    <p:else>
+                        <a t:type="pageLink" t:page="login"> Log in</a>
+                    </p:else>
+                </t:if>
             </div>
         </div>
         <!-- end header -->

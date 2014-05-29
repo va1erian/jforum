@@ -1,6 +1,13 @@
 package at.graphes.jforum.services;
 
-import at.graphes.jforum.dao.*;
+import at.graphes.jforum.services.domain.TopicDAOHibernateImpl;
+import at.graphes.jforum.services.domain.TopicDAO;
+import at.graphes.jforum.services.domain.BoardDAO;
+import at.graphes.jforum.services.domain.UserDAOHibernateImpl;
+import at.graphes.jforum.services.domain.PostDAOHibernateImpl;
+import at.graphes.jforum.services.domain.UserDAO;
+import at.graphes.jforum.services.domain.PostDAO;
+import at.graphes.jforum.services.domain.BoardDAOHibernateImpl;
 import at.graphes.jforum.services.auth.AuthenticationService;
 import at.graphes.jforum.services.auth.RequiresAuthenticationFilter;
 import java.io.IOException;
