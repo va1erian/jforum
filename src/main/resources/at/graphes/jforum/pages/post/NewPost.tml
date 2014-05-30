@@ -2,6 +2,13 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
-    <t:beaneditform object="newPost"/>
+        <form t:type="form" t:id="postForm">
+            <t:errors/>
+            <p>
+            <t:label for="content"/>:
+            <textarea t:type="TextArea" t:id="content" rows="6"  cols="40" t:validate="required,minlength=3" size="30"/>
+            </p>
+            <input type="submit" value="Post reply"/>
+        </form>
 
 </html>

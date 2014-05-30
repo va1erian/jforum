@@ -3,6 +3,24 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
-     <t:grid source="b?.topics" reorder="title,"/>
-     <t:pagelink page="topic/create" parameters="{'board': b.id }"> Create Topic </t:pagelink>
+     <table class="t-data-grid">
+        <tr>
+            <th> Title </th>
+            <th> Author </th>
+            <th> Post Date </th>
+            <th>  Reply Count </th>
+         </tr>
+        <t:loop source="b?.topics" value="t"> 
+        <tr>
+            <td style="width:60%"> 
+                <t:pagelink page="topic/view" context="t"> ${t.title} </t:pagelink> 
+            </td>
+            <td> ${t.author.nickname} </td>
+            <td> ${t.postDate} </td>
+            <td> ${t.postCount} </td>
+        </tr>
+        </t:loop>
+    </table>    
+
+     <t:pagelink page="topic/create" class="btn" parameters="{'board': b.id }"> Create Topic </t:pagelink>
 </html>

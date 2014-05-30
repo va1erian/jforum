@@ -84,4 +84,8 @@ public class Topic extends Message implements Serializable {
     public void setReplies(List<Post> replies) {
         this.replies = replies;
     }
+    
+    public int getPostCount() {
+        return replies.size();
+    }
 }

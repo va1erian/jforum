@@ -1,13 +1,16 @@
 package at.graphes.jforum.pages.topic;
 
-import at.graphes.jforum.services.domain.TopicDAO;
 import at.graphes.jforum.entities.Board;
 import at.graphes.jforum.entities.Topic;
+import at.graphes.jforum.pages.Index;
+import at.graphes.jforum.services.auth.AuthenticationService;
 import at.graphes.jforum.services.auth.RequiresAuthentication;
+import at.graphes.jforum.services.domain.TopicDAO;
 import java.util.Date;
 import org.apache.tapestry5.annotations.ActivationRequestParameter;
-import org.apache.tapestry5.annotations.Log;
+import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.Property;
+import org.apache.tapestry5.corelib.components.Form;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /*
@@ -34,22 +37,34 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 @RequiresAuthentication
 public class CreateTopic {
     
+    @Inject
+    private AuthenticationService auth;
+    
     @Property
     @ActivationRequestParameter
     private Board board;
     
-    @Property
-    private Topic newTopic;
+    @Property private String title;
+    @Property private String content;
+    
+    @Component
+    private Form postForm;
     
     @Inject
     private TopicDAO topicDAO;
     
-    @Log
-    Object onSuccess() {
+    void onValidateFromPostForm() {
+        Topic newTopic = new Topic();
+        
+        newTopic.setTitle(title);
+        newTopic.setContent(content);
         newTopic.setBoard(board);
         newTopic.setPostDate(new Date());
+        newTopic.setAuthor(auth.getLoggedUser());
         topicDAO.save(newTopic);
-        
-        return null;
+    }
+    
+    Object onSuccess() {
+        return Index.class;
     }
 }

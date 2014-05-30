@@ -3,11 +3,7 @@
       xmlns:p="tapestry:parameter">
 
     <body>
-        <ul>
-            <li> ${post.id} </li>
-            <li> ${post.postDate} </li>
-            <li> ${post.content} </li>
-        </ul>
+        <t:MessageViewer msg="post"/>
     </body>
 
 </html>

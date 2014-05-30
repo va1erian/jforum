@@ -2,8 +2,10 @@ package at.graphes.jforum.entities;
 
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 /**
@@ -14,8 +16,15 @@ import javax.persistence.ManyToOne;
 
 public class Post extends Message implements Serializable {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn
     private Topic parent;
-    
-   
+
+    public Topic getParent() {
+        return parent;
+    }
+
+    public void setParent(Topic parent) {
+        this.parent = parent;
+    }
 }

@@ -1,0 +1,15 @@
+<html t:type="layout" title="${topic?.title}"
+      t:sidebarTitle="Framework Version"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+     <t:MessageViewer msg="topic"/>
+     
+     <div class="topic-message-list">
+        <t:loop source="topic.replies" value="reply">
+            <t:MessageViewer msg="reply"/>
+        </t:loop>
+     </div>
+
+     <t:pagelink page="post/new" class="btn" context="topic"> Reply </t:pagelink>
+</html>

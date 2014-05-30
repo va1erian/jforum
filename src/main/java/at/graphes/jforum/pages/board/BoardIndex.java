@@ -18,6 +18,7 @@
 package at.graphes.jforum.pages.board;
 
 import at.graphes.jforum.entities.Board;
+import at.graphes.jforum.entities.Topic;
 import org.apache.tapestry5.annotations.ActivationRequestParameter;
 import org.apache.tapestry5.annotations.Property;
 
@@ -31,4 +32,7 @@ public class BoardIndex {
     @ActivationRequestParameter
     private Board b;
     
+    
+    @Property
+    private Topic t;
 }

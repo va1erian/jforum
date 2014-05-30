@@ -2,6 +2,17 @@
       xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
       xmlns:p="tapestry:parameter">
 
-    <t:beaneditform object="newTopic" include="title, content" />
-
+        <form t:type="form" t:id="postForm">
+            <t:errors/>
+            
+            <p>
+            <t:label for="title"/>:
+            <input t:type="TextField" t:id="title" t:validate="required,minlength=3" size="30"/>
+            </p>
+            <p>
+            <t:label for="content"/>:
+            <textarea t:type="TextArea" t:id="content" rows="6"  cols="40" t:validate="required,minlength=3" size="30"/>
+            </p>
+            <input type="submit" value="Create topic"/>
+        </form>
 </html>

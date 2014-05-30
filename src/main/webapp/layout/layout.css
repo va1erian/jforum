@@ -23,8 +23,10 @@ form label {
     vertical-align: top;
 }
 
-input {
+input, a.btn {
     padding: 5px;
+    margin: 3px;
+    display: inline-block;
     background-color: #FEFEFE;
     border: 1px solid #626262;
     font: normal 1em Arial, Helvetica, sans-serif;
@@ -77,6 +79,26 @@ a:hover {
     text-decoration: none;
 }
 
+.msg-view {
+    border: 1px solid #757575;
+    margin: 5px 0 5px 0;
+    width:100%;
+}
+
+.msg-view-header {
+    background-color: #DDDDDD;
+    padding: 4px;
+}
+
+.msg-view-body {
+    padding: 10px;
+}
+
+.topic-message-list {
+    margin : 20px 0 10px 0;
+}
+
+
 /* Header */
 
 div.header {
@@ -111,49 +133,6 @@ div.logo p {
 div.logo a {
     text-decoration: none;
     color: #BABABA;
-}
-
-div.menu {
-    float: right;
-}
-
-div.menu ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-div.menu li {
-    display: block;
-    float: left;
-    height: 42px;
-}
-
-div.menu a {
-    display: block;
-    padding: 8px 20px 0px 20px;
-    text-decoration: none;
-    text-align: center;
-    text-transform: lowercase;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-    font-weight: normal;
-    font-size: 14px;
-    color: #CEC5A4;
-}
-
-div.menu .last {
-    margin-right: 20px;
-}
-
-div.menu a:hover {
-    color: #FFFFFF;
-}
-
-div.menu .current_page_item A {
-    text-decoration: underline;
-}
-
-div.menu .current_page_item a {
 }
 
 /* Page */
@@ -230,44 +209,6 @@ table.t-data-grid th {
     background-color : #BABABA;
 }
 
-/* Calendar */
-
-div.calendar_wrap {
-    padding: 0 30px 40px 30px;
-}
-
-div.calendar table {
-    width: 100%;
-    text-align: center;
-}
-
-div.calendar thead {
-    background: #F1F1F1;
-}
-
-div.calendar tbody td {
-    border: 1px solid #F1F1F1;
-}
-
-div.calendar #prev {
-    text-align: left;
-}
-
-div.calendar #next {
-    text-align: right;
-}
-
-div.calendar tfoot a {
-    text-decoration: none;
-    font-weight: bold;
-}
-
-div.calendar #today {
-    background: #FFF3A7;
-    border: 1px solid #EB1400;
-    font-weight: bold;
-    color: #EB1400
-}
 
 /* Footer */
 
@@ -294,17 +235,6 @@ div.footer a:hover {
     color: #FFFFFF;
 }
 
-div.footer .rss {
-    background: url(images/img18.gif) no-repeat left center;
-}
-
-div.footer .xhtml {
-    background: url(images/img19.gif) no-repeat left center;
-}
-
-div.footer .css {
-    background: url(images/img20.gif) no-repeat left center;
-}
 
 div.footer .legal a {
     padding: 0;

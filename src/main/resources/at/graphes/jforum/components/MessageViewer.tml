@@ -1,0 +1,13 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd">
+<t:content>
+    <div class="msg-view">
+        <div class="msg-view-header">
+            <strong class="msg-header-author"> ${msg.author.nickname} </strong> 
+            <em> Posted ${msg.postDate} </em>
+        </div>
+        <div class="msg-view-body">
+                ${msg.content}
+        </div>
+    </div>
+</t:content>
+</html>
