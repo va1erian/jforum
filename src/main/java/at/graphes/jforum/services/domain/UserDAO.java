@@ -26,7 +26,8 @@ import org.apache.tapestry5.hibernate.annotations.CommitAfter;
  * @author valerian
  */
 public interface UserDAO {
-
+    
+    User findById(long id);
     User findByNickname(String nick);
     User findByMessage(Message m);
     

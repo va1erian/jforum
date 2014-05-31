@@ -2,6 +2,7 @@ package at.graphes.jforum.entities;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -19,21 +20,44 @@ public class User implements Serializable {
     public enum Type {
         USER, ADMINISTRATOR;
     }
-    
     @Id
+    private long id;
+
+    
+    @Column(nullable = false)
     private String nickname;
+    
+    @Column(nullable = false)
     private String email;
+    
+    @Column(nullable = false)
     private String passHash;
+    
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date regDate;
+    
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastLogDate;
+    
     @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private User.Type type;
-    private static final long serialVersionUID = 1L;
+    
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "recipient")
+    private List<PrivateMessage> privateMessages;
 
+    
     public User() {
         super();
+    }
+    
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNickname() {
@@ -84,5 +108,11 @@ public class User implements Serializable {
         this.type = type;
     }
 
+    public List<PrivateMessage> getPrivateMessages() {
+        return privateMessages;
+    }
 
+    public void setPrivateMessages(List<PrivateMessage> privateMessages) {
+        this.privateMessages = privateMessages;
+    }
 }

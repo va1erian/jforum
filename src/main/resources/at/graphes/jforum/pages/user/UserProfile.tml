@@ -1,0 +1,14 @@
+<html t:type="layout" title="User ${user?.nickname}"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+
+    <t:if test="user">
+        <t:beandisplay object="user" exclude="id, passhash" />
+        <p>
+            <t:PageLink class="btn" page="privatemessage/new" parameters="{ 'recipient': user }"> Send a private message </t:PageLink>
+        </p>
+        <p:else>
+            <p> User not found. </p>
+        </p:else>
+    </t:if>
+</html>

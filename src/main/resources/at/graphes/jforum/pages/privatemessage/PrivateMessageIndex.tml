@@ -1,0 +1,10 @@
+<html t:type="layout" title="Your private messages"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+      
+      <t:loop source="auth.loggedUser.privateMessages" value="msg">
+        <h3> ${msg.title} </h3>
+        <t:MessageViewer msg="msg"/>
+      </t:loop>
+
+</html>

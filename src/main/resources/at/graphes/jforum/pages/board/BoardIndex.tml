@@ -12,15 +12,16 @@
          </tr>
         <t:loop source="b?.topics" value="t"> 
         <tr>
-            <td style="width:60%"> 
+            <td style="width:50%"> 
                 <t:pagelink page="topic/view" context="t"> ${t.title} </t:pagelink> 
             </td>
-            <td> ${t.author.nickname} </td>
+            <td> <t:UserLink user="t.author"/> </td>
             <td> ${t.postDate} </td>
             <td> ${t.postCount} </td>
         </tr>
         </t:loop>
     </table>    
-
+    <p>
      <t:pagelink page="topic/create" class="btn" parameters="{'board': b.id }"> Create Topic </t:pagelink>
+     </p>
 </html>

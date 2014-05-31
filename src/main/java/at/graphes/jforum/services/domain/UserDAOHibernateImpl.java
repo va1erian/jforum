@@ -26,8 +26,10 @@ import org.hibernate.Session;
  *
  * @author valerian
  */
-public class UserDAOHibernateImpl implements UserDAO{
 
+public class UserDAOHibernateImpl implements UserDAO {
+
+    static String BY_NICKNAME_QUERY = "SELECT u FROM User u WHERE u.nickname = :n";
     static String BY_MESSAGE_QUERY = "SELECT u FROM User u WHERE :p.author = u";
     
     @Inject
@@ -35,12 +37,17 @@ public class UserDAOHibernateImpl implements UserDAO{
     
     @Override
     public User findByNickname(String nick) {
-        return (User) s.get(User.class, nick);
+        return (User) s.createQuery(BY_NICKNAME_QUERY).setParameter("n", nick).uniqueResult();
     }
 
     @Override
     public User findByMessage(Message m) {
         return (User) s.createQuery(BY_MESSAGE_QUERY).setParameter("p", m).uniqueResult();
+    }
+    
+    @Override
+    public User findById(long id) {
+        return (User) s.get(User.class, id);
     }
 
     @Override

@@ -16,7 +16,11 @@
             </div>
             <div class="header-member-panel">
                 <t:if test="auth.loggedIn">
-                Hello ${auth.loggedUser.nickname }
+                Hello <t:UserLink user="auth.loggedUser"/>
+                &nbsp;&bull;&nbsp;
+                <t:PageLink page="privatemessage/index"> Private Messages </t:PageLink>
+                &nbsp;&bull;&nbsp;
+                <t:PageLink page="logout"> Log out </t:PageLink>
                     <p:else>
                         <a t:type="pageLink" t:page="login"> Log in</a>
                     </p:else>
@@ -38,7 +42,6 @@
                 </div>
             </div>
             <!-- end content -->
-            <br style="clear: both;"/>
         </div>
         <!-- end page -->
         <!-- start footer -->

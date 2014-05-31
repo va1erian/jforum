@@ -15,31 +15,31 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package at.graphes.jforum.pages;
+package at.graphes.jforum.pages.privatemessage;
 
+import at.graphes.jforum.entities.PrivateMessage;
 import at.graphes.jforum.entities.User;
-import at.graphes.jforum.services.auth.AuthenticationException;
 import at.graphes.jforum.services.auth.AuthenticationService;
+import at.graphes.jforum.services.auth.RequiresAuthentication;
 import at.graphes.jforum.services.domain.UserDAO;
 import java.util.Date;
-import org.apache.tapestry5.annotations.Component;
-import org.apache.tapestry5.annotations.InjectComponent;
+import org.apache.tapestry5.annotations.ActivationRequestParameter;
 import org.apache.tapestry5.annotations.Property;
 import org.apache.tapestry5.corelib.components.Form;
-import org.apache.tapestry5.corelib.components.PasswordField;
+import org.apache.tapestry5.hibernate.annotations.CommitAfter;
 import org.apache.tapestry5.ioc.annotations.Inject;
 
 /**
  *
  * @author valerian
  */
-public class Login  {
+
+@RequiresAuthentication
+public class NewPrivateMessage {
     
+    @ActivationRequestParameter
     @Property
-    private String nickname;
-    
-    @Property
-    private String password;
+    private User recipient;
     
     @Inject
     private AuthenticationService auth;
@@ -47,27 +47,23 @@ public class Login  {
     @Inject
     private UserDAO userDAO;
     
-    @InjectComponent("password")
-    private PasswordField passwordField;
+    @Property private String title;
+    @Property private String content;
     
-    @Component
-    private Form loginForm;
+    @Property private Form privateMessageForm;
     
-    void onValidateFromLoginForm()
-    {
-        try {
-            auth.tryLogin(nickname, password);
-            User u = auth.getLoggedUser();
-            u.setLastLogDate(new Date());
-            userDAO.save(u);
-            
-        } catch(AuthenticationException e) {
-            loginForm.recordError(e.getMessage());
-        }
+    @CommitAfter
+    void onSuccess() {
+        PrivateMessage pm = new PrivateMessage();
+        pm.setTitle(title);
+        pm.setContent(content);
+        pm.setPostDate(new Date());
+        pm.setAuthor(auth.getLoggedUser());
+        pm.setRecipient(recipient);
+        
+        recipient.getPrivateMessages().add(pm);
+        userDAO.save(recipient);
+        
+        
     }
-    
-    Object onSuccess() {
-        return Index.class;
-    }
-    
 }

@@ -2,7 +2,7 @@
 <t:content>
     <div class="msg-view">
         <div class="msg-view-header">
-            <strong class="msg-header-author"> ${msg.author.nickname} </strong> 
+            <strong class="msg-header-author"><t:UserLink user="msg.author"/> </strong> 
             <em> Posted ${msg.postDate} </em>
         </div>
         <div class="msg-view-body">
