@@ -54,6 +54,10 @@ public class CreateTopic {
     private TopicDAO topicDAO;
     
     void onValidateFromPostForm() {
+
+    }
+    
+    Object onSuccess() {
         Topic newTopic = new Topic();
         
         newTopic.setTitle(title);
@@ -62,9 +66,7 @@ public class CreateTopic {
         newTopic.setPostDate(new Date());
         newTopic.setAuthor(auth.getLoggedUser());
         topicDAO.save(newTopic);
-    }
-    
-    Object onSuccess() {
+        
         return Index.class;
     }
 }

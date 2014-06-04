@@ -23,6 +23,8 @@
                 <t:PageLink page="logout"> Log out </t:PageLink>
                     <p:else>
                         <a t:type="pageLink" t:page="login"> Log in</a>
+                        &nbsp;&bull;&nbsp;
+                        <a t:type="pageLink" t:page="register"> Register</a>
                     </p:else>
                 </t:if>
             </div>

@@ -21,6 +21,7 @@ public class User implements Serializable {
         USER, ADMINISTRATOR;
     }
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     
@@ -44,7 +45,7 @@ public class User implements Serializable {
     @Column(nullable = false)
     private User.Type type;
     
-    @OneToMany( cascade = CascadeType.ALL, mappedBy = "recipient")
+    @OneToMany( cascade = CascadeType.ALL, mappedBy = "recipient", fetch = FetchType.LAZY)
     private List<PrivateMessage> privateMessages;
 
     

@@ -13,6 +13,6 @@
                 <t:label for="content"/>
                 <input t:type="TextArea" t:id="content" cols="40" rows="5" t:validate="required,minlength=3" size="30"/>
             </p>
-            <input type="submit" value="Login"/>
+            <input type="submit" value="Send"/>
         </form>
 </html>

@@ -63,7 +63,5 @@ public class NewPrivateMessage {
         
         recipient.getPrivateMessages().add(pm);
         userDAO.save(recipient);
-        
-        
     }
 }

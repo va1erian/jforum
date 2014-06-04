@@ -50,7 +50,7 @@ public class AuthenticationService {
             throw new AuthenticationException("Incorrect password.");
         }
         
-        sessionManager.set(User.class, u);
+        sessionManager.set(Long.class, u.getId());
     }
     
     public byte[] computeHash(String pass) throws AuthenticationException {
@@ -69,14 +69,14 @@ public class AuthenticationService {
     }
     
     public User getLoggedUser() {
-        return (User) sessionManager.get(User.class);
+        return (User) userDAO.findById(sessionManager.get(Long.class));
     }
     
     public boolean isLoggedIn() {
-        return sessionManager.exists(User.class);
+        return sessionManager.exists(Long.class);
     }
     
     public void logOut() {
-        sessionManager.set(User.class, null);
+        sessionManager.set(Long.class, null);
     }
 }
